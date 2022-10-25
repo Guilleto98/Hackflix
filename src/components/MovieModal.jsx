@@ -19,7 +19,7 @@ function MovieModal(props) {
           <div className="col">
             <img
               className="img-fluid listPoster"
-              src={props.movie.poster_path}
+              src={"https://image.tmdb.org/t/p/w500" + props.movie.poster_path}
               alt=""
             />
           </div>

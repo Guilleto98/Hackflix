@@ -17,7 +17,7 @@ function Movie({ movie }) {
             setModalShow(true);
             //hacer el modal con estados show, setShow
           }}
-          src={movie.poster_path}
+          src={"https://image.tmdb.org/t/p/w500" + movie.poster_path}
           className="img-fluid listPoster"
           alt=""
         />
