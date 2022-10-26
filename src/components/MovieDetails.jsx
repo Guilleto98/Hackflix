@@ -1,10 +1,13 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
+import {useLocation, useParams} from 'react-router-dom'
 
-function MovieDetails(params){
+function MovieDetails(){
 
         const [movie, setMovie] = useState(null);
         const moviePosterURL = "https://image.tmdb.org/t/p/original";
+        const location = useLocation();
+        const params = useParams();
 
         useEffect(() => {
             const getMovie = async () => {
@@ -18,13 +21,20 @@ function MovieDetails(params){
             });
 
             setMovie(response.data);
-            };
+            }
             getMovie();
         }, []);
 
     return(
         <>
-            
+            <div className="container">
+                <div className="col">
+                    <img src={moviePosterURL + movie.poster_path} className="img-fluid" alt="" />
+                </div>
+                <div className="col">
+                    <h1>{movie.title}</h1>
+                </div>
+            </div>
         </>
     )
 }
