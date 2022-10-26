@@ -1,21 +1,19 @@
 import "./App.css";
-import { useState } from "react";
 import Header from "./components/Header";
-import MovieList from "./components/MovieList";
-import RatingFilter from "./components/RatingFilter";
+import { Routes, Route} from "react-router-dom";
+import Home from "./components/Home/Home";
+import MovieDetails from "./components/MovieDetails";
 
 function App() {
-  const [movies, setMovies] = useState([]);
-  const [rating, setRating] = useState(0);
+  
   return (
     <div className="App">
       <>
         <Header />
-        <RatingFilter
-          rating={rating}
-          setRating={setRating}
-        />
-        <MovieList movies={movies} rating={rating} />
+        <Routes>
+          <Route path='/home' element={<Home/>}/>
+          <Route path='/movie/:id' element={<MovieDetails/>}/>
+        </Routes>
       </>
     </div>
   );

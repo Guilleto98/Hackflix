@@ -1,5 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import {Link} from 'react-router-dom'
 
 function MovieModal(props) {
   return (
@@ -27,6 +28,7 @@ function MovieModal(props) {
             <h4>Overview</h4>
             <p>{props.movie.overview}</p>
             <small>Rating {props.movie.vote_average}</small>
+            <Link to={`/movie/${props.movie.id}`} className="btn btn-primary m-3">More details</Link>
           </div>
         </div>
       </Modal.Body>

@@ -22,7 +22,7 @@ function Movie({ movie }) {
           alt=""
         />
 
-        <small className="text-white">{movie.vote_count}</small>
+        <small className="text-white">{movie.vote_average}</small>
       </div>
     </>
   );

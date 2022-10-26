@@ -4,11 +4,10 @@ import Movie from "./Movie";
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-function MovieList({ rating }) {
-  const [movies, setMovies] = useState([]);
+function MovieList({ rating, movies, setMovies }) {
   const [page, setPage] = useState(1);
+  const [prevRating, setPrevRating] = useState(0);
 
-  /*  */
 
   const getMovies = async () => {
     const response = await axios({
@@ -27,19 +26,29 @@ function MovieList({ rating }) {
       },
     });
 
+
     setMovies([...movies, ...response.data.results]);
-    setPage(page + 1);
     console.log(rating);
+    console.log(movies.length)
   };
-
+  
   useEffect(() => {
+    if(rating !== prevRating){
+      setMovies([]);
+    }
     getMovies();
-  }, []); // eslint-disable-line
+  }, [page, rating]); // eslint-disable-line
 
-  useEffect(() => {
+  /* useEffect(() => {
+    getMovies();
+  }, [page]); */ // eslint-disable-line
+  
+
+  /* useEffect(() => { */
+    /* setPage(1)
     setMovies([]);
-    getMovies();
-  }, [rating]);
+    getMovies(); */
+  /* }, [rating]); */
 
   return (
     movies && (
@@ -47,11 +56,13 @@ function MovieList({ rating }) {
         <InfiniteScroll
           className="row"
           dataLength={movies.length}
-          next={getMovies}
+          next={()=>{
+            setPage(page + 1);
+          }}
           hasMore={true}
         >
-          {movies.map((movie) => {
-            return <Movie movie={movie} key={movie.id} />;
+          {movies.map((movie, index) => {
+            return <Movie movie={movie} key={index} />;
           })}
         </InfiniteScroll>
       </div>
