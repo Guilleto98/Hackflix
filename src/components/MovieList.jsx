@@ -21,7 +21,8 @@ function MovieList({ rating }) {
         include_adult: false,
         include_video: false,
         page: page,
-        "vote_average.gte": rating,
+        "vote_count.gte": 1000,
+        "vote_average.gte": (rating - 1) * 2,
         with_watch_monetization_types: `flatrate`,
       },
     });
@@ -35,10 +36,10 @@ function MovieList({ rating }) {
     getMovies();
   }, []); // eslint-disable-line
 
-  /* 
-  let filteredMovies = movies.filter(
-    (movie) => movie.vote_average >= (rating - 1) * 2
-  ); */
+  useEffect(() => {
+    setMovies([]);
+    getMovies();
+  }, [rating]);
 
   return (
     movies && (

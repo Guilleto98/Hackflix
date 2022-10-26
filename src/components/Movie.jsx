@@ -21,6 +21,8 @@ function Movie({ movie }) {
           className="img-fluid listPoster"
           alt=""
         />
+
+        <small className="text-white">{movie.vote_count}</small>
       </div>
     </>
   );
