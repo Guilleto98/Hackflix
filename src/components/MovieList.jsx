@@ -23,10 +23,9 @@ function MovieList({ currentRating }) {
         "vote_count.gte": 1000,
         "vote_average.gte": (rating - 1) * 2,
         with_watch_monetization_types: `flatrate`,
-        append_to_response: "credits"
+        append_to_response: "credits",
       },
     }).then((result) => {
-      console.log(result.data.results)
       return result.data.results;
     });
   };
@@ -50,24 +49,23 @@ function MovieList({ currentRating }) {
     })();
   }, [currentPage]);
 
-  return (
-    movieList ? (
-      <div className="container">
-        <InfiniteScroll
-          className="row"
-          dataLength={movieList.length}
-          next={() => {
-            setCurrentPage(currentPage + 1);
-          }}
-          hasMore={true}
-        >
-          {movieList.map((movie) => {
-            return <Movie movie={movie} key={movie.id} />;
-          })}
-        </InfiniteScroll>
-      </div>
-    ):
-    <Spinner/>
+  return movieList ? (
+    <div className="container">
+      <InfiniteScroll
+        className="row"
+        dataLength={movieList.length}
+        next={() => {
+          setCurrentPage(currentPage + 1);
+        }}
+        hasMore={true}
+      >
+        {movieList.map((movie) => {
+          return <Movie movie={movie} key={movie.id} />;
+        })}
+      </InfiniteScroll>
+    </div>
+  ) : (
+    <Spinner />
   );
 }
 

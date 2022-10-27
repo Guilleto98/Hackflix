@@ -32,27 +32,26 @@ function SearchMovie() {
     fetchMovies();
   }, [movieName]);
 
-  return (
-    foundMovies ? (
-      <div className="container d-flex flex-column align-items-center">
-        <h5 className="textStar text-white mt-3">Search a Movie</h5>
-        <Form className="d-flex w-25">
-          <Form.Control
-            type="search"
-            placeholder="Start typing..."
-            className="me-2"
-            aria-label="Search"
-            onChange={(e) => setMovieName(e.target.value)}
-          />
-        </Form>
-        <div className="row">
-          {foundMovies.map((movie) => (
-            <Movie movie={movie} key={movie.id}/>
-          ))}
-        </div>
+  return foundMovies ? (
+    <div className="container d-flex flex-column align-items-center">
+      <h5 className="textStar text-white mt-3">Search a Movie</h5>
+      <Form className="d-flex w-25">
+        <Form.Control
+          type="search"
+          placeholder="Start typing..."
+          className="me-2"
+          aria-label="Search"
+          onChange={(e) => setMovieName(e.target.value)}
+        />
+      </Form>
+      <div className="row">
+        {foundMovies.map((movie) => (
+          <Movie movie={movie} key={movie.id} />
+        ))}
       </div>
-    ):
-    <Spinner/>
+    </div>
+  ) : (
+    <Spinner />
   );
 }
 
