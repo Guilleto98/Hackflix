@@ -35,7 +35,7 @@ function MovieModal(props) {
         <Button className="btn-danger" onClick={props.onHide}>
           Close
         </Button>
-        <Link to={`/movie/${props.movie.id}`} className="btn btn-primary m-3">More details</Link>
+        <Link to={`/pelicula/${props.movie.id}`} className="btn btn-primary m-3">More details</Link>
       </Modal.Footer>
     </Modal>
   );
