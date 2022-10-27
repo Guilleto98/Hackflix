@@ -28,7 +28,6 @@ function MovieModal(props) {
             <h4>Overview</h4>
             <p>{props.movie.overview}</p>
             <small>Rating {props.movie.vote_average}</small>
-            <Link to={`/movie/${props.movie.id}`} className="btn btn-primary m-3">More details</Link>
           </div>
         </div>
       </Modal.Body>
@@ -36,6 +35,7 @@ function MovieModal(props) {
         <Button className="btn-danger" onClick={props.onHide}>
           Close
         </Button>
+        <Link to={`/movie/${props.movie.id}`} className="btn btn-primary m-3">More details</Link>
       </Modal.Footer>
     </Modal>
   );

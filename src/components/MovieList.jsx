@@ -8,7 +8,6 @@ function MovieList({ rating, movies, setMovies }) {
   const [page, setPage] = useState(1);
   const [prevRating, setPrevRating] = useState(0);
 
-
   const getMovies = async () => {
     const response = await axios({
       url: `https://api.themoviedb.org/3/discover/movie?`,
@@ -26,14 +25,13 @@ function MovieList({ rating, movies, setMovies }) {
       },
     });
 
-
     setMovies([...movies, ...response.data.results]);
     console.log(rating);
-    console.log(movies.length)
+    console.log(movies.length);
   };
-  
+
   useEffect(() => {
-    if(rating !== prevRating){
+    if (rating !== prevRating) {
       setMovies([]);
     }
     getMovies();
@@ -42,10 +40,9 @@ function MovieList({ rating, movies, setMovies }) {
   /* useEffect(() => {
     getMovies();
   }, [page]); */ // eslint-disable-line
-  
 
   /* useEffect(() => { */
-    /* setPage(1)
+  /* setPage(1)
     setMovies([]);
     getMovies(); */
   /* }, [rating]); */
@@ -56,7 +53,7 @@ function MovieList({ rating, movies, setMovies }) {
         <InfiniteScroll
           className="row"
           dataLength={movies.length}
-          next={()=>{
+          next={() => {
             setPage(page + 1);
           }}
           hasMore={true}
