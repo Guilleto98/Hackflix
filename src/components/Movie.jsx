@@ -11,7 +11,7 @@ function Movie({ movie }) {
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
-      <div className="col-sm-12 col-md-6 col-lg-3 mb-4 ">
+      <div className="col-sm-12 col-md-6 col-lg-3 mb-4 listPosterContainer">
         <img
           onClick={() => {
             setModalShow(true);
@@ -21,8 +21,6 @@ function Movie({ movie }) {
           className="img-fluid listPoster"
           alt=""
         />
-
-        <small className="text-white">{movie.vote_average}</small>
       </div>
     </>
   );
