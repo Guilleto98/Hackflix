@@ -1,8 +1,8 @@
 import Form from "react-bootstrap/Form";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import MovieModal from "../components/MovieModal";
 import Movie from "./Movie";
+import Spinner from "./Spinner";
 
 function SearchMovie() {
   const [foundMovies, setFoundMovies] = useState([]);
@@ -33,7 +33,7 @@ function SearchMovie() {
   }, [movieName]);
 
   return (
-    foundMovies && (
+    foundMovies ? (
       <div className="container d-flex flex-column align-items-center">
         <h5 className="textStar text-white mt-3">Search a Movie</h5>
         <Form className="d-flex w-25">
@@ -51,7 +51,8 @@ function SearchMovie() {
           ))}
         </div>
       </div>
-    )
+    ):
+    <Spinner/>
   );
 }
 

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import Spinner from "./Spinner";
 
 function MovieDetails() {
   const [movie, setMovie] = useState(null);
@@ -25,7 +26,7 @@ function MovieDetails() {
   }, []);
 
   return (
-    movie && (
+    movie ? (
       <>
         <div className="container">
           <div className="row">
@@ -49,7 +50,8 @@ function MovieDetails() {
           </div>
         </div>
       </>
-    )
+    ):
+    <Spinner/>
   );
 }
 

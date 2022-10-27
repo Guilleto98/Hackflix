@@ -3,6 +3,7 @@ import Movie from "./Movie";
 /* import movieList from "../movies.json"; */
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
+import Spinner from "./Spinner";
 
 function MovieList({ currentRating }) {
   const [movieList, setMovieList] = useState([]);
@@ -50,7 +51,7 @@ function MovieList({ currentRating }) {
   }, [currentPage]);
 
   return (
-    movieList && (
+    movieList ? (
       <div className="container">
         <InfiniteScroll
           className="row"
@@ -65,7 +66,8 @@ function MovieList({ currentRating }) {
           })}
         </InfiniteScroll>
       </div>
-    )
+    ):
+    <Spinner/>
   );
 }
 
