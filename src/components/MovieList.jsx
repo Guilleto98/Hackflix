@@ -8,7 +8,7 @@ function MovieList({ currentRating }) {
   const [movieList, setMovieList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const fetchMovies = async (page, rating) => {
+  const fetchMovies = (page, rating) => {
     return axios({
       url: `https://api.themoviedb.org/3/discover/movie?`,
       method: "GET",
@@ -22,8 +22,10 @@ function MovieList({ currentRating }) {
         "vote_count.gte": 1000,
         "vote_average.gte": (rating - 1) * 2,
         with_watch_monetization_types: `flatrate`,
+        append_to_response: "credits"
       },
     }).then((result) => {
+      console.log(result.data.results)
       return result.data.results;
     });
   };
