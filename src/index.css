@@ -54,3 +54,13 @@ body {
   background-color: #191b1f;
   color: azure;
 }
+
+.movieDetailsCol {
+  margin: 1rem;
+}
+
+.movieInfoContainer {
+  color: white;
+  border: solid 1px grey;
+  border-radius: 5px;
+}
