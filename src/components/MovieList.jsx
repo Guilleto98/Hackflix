@@ -4,12 +4,12 @@ import Movie from "./Movie";
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-function MovieList({ rating, movies, setMovies }) {
-  const [page, setPage] = useState(1);
-  const [prevRating, setPrevRating] = useState(0);
+function MovieList({ currentRating }) {
+  const [movieList, setMovieList] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const getMovies = async () => {
-    const response = await axios({
+  const fetchMovies = async (page, rating) => {
+    return axios({
       url: `https://api.themoviedb.org/3/discover/movie?`,
       method: "GET",
       params: {
@@ -23,43 +23,43 @@ function MovieList({ rating, movies, setMovies }) {
         "vote_average.gte": (rating - 1) * 2,
         with_watch_monetization_types: `flatrate`,
       },
+    }).then((result) => {
+      return result.data.results;
     });
-
-    setMovies([...movies, ...response.data.results]);
-    console.log(rating);
-    console.log(movies.length);
   };
 
   useEffect(() => {
-    if (rating !== prevRating) {
-      setMovies([]);
-    }
-    getMovies();
-  }, [page, rating]); // eslint-disable-line
+    (async () => {
+      setCurrentPage(1);
+      const newMovies = await fetchMovies(1, currentRating);
+      setMovieList([...newMovies]);
+    })();
+  }, [currentRating]);
 
-  /* useEffect(() => {
-    getMovies();
-  }, [page]); */ // eslint-disable-line
-
-  /* useEffect(() => { */
-  /* setPage(1)
-    setMovies([]);
-    getMovies(); */
-  /* }, [rating]); */
+  useEffect(() => {
+    (async () => {
+      const newMovies = await fetchMovies(currentPage, currentRating);
+      if (currentPage === 1) {
+        setMovieList([...newMovies]);
+      } else {
+        setMovieList([...movieList, ...newMovies]);
+      }
+    })();
+  }, [currentPage]);
 
   return (
-    movies && (
+    movieList && (
       <div className="container">
         <InfiniteScroll
           className="row"
-          dataLength={movies.length}
+          dataLength={movieList.length}
           next={() => {
-            setPage(page + 1);
+            setCurrentPage(currentPage + 1);
           }}
           hasMore={true}
         >
-          {movies.map((movie, index) => {
-            return <Movie movie={movie} key={index} />;
+          {movieList.map((movie) => {
+            return <Movie movie={movie} key={movie.id} />;
           })}
         </InfiniteScroll>
       </div>

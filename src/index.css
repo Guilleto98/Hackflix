@@ -54,3 +54,25 @@ body {
   background-color: #191b1f;
   color: azure;
 }
+
+.movieDetailsCol {
+  margin: 1rem;
+}
+
+.movieInfoContainer {
+  color: white;
+  border: solid 1px grey;
+  border-radius: 5px;
+}
+
+.msjFailContainer{
+      border-radius: 3rem;
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+      display: flex;
+      color: #c91717;
+      height: 400px;
+      justify-content: center;
+      align-items: center;
+  box-shadow: rgba(95, 94, 94, 0.25) 0px 54px 55px, rgba(185, 185, 185, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
